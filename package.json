@@ -1,0 +1,25 @@
+{
+  "name": "react-native-multicolor-progress-bar",
+  "version": "1.0.1",
+  "description": "This package allows the user to use different colours to display multiple items in a single linear progress bar",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AribaSami199/is-null-or-empty.git "
+  },
+  "keywords": [
+    "react-native",
+    "react-native-progress-bar",
+    "react-native-multicolor-progress-bar",
+    "multicolor-progress-bar",
+    "progress-bar"
+  ],
+  "author": "Ariba Sami",
+  "license": "ISC",
+  "devDependencies": {
+    "metro-react-native-babel-preset": "^0.56.3"
+  }
+}
