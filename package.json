@@ -1,6 +1,6 @@
 {
   "name": "react-native-multicolor-progress-bar",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "This package allows the user to use different colours to display multiple items in a single linear progress bar",
   "main": "index.js",
   "scripts": {

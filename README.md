@@ -21,7 +21,7 @@ import {ProgressBar} from 'react-native-multicolor-progress-bar';
    {
      color: 'red',
      value: 0.4,
-     nameToDisplay: "This will display the name"
+     nameToDisplay: "40%"
    },
    {
      color: 'blue',
