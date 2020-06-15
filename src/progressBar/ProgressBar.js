@@ -24,7 +24,7 @@ export default class ProgressBar extends Component {
       )
     }
   
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
       if(this.props.arrayOfProgressObjects != nextProps.arrayOfProgressObjects){
         let total = this.getCoveredBar(nextProps);
         this.setState({
