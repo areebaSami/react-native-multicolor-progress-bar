@@ -1,5 +1,8 @@
 # react-native-multicolor-progress-bar
 
+## v2 supports latest version of react. v1 has the older version of react.
+
+
 Progress indicators
 
 example
