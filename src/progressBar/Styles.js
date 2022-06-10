@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import { colors } from '../common';
+import { colors } from '../commons';
 
 export const styles = StyleSheet.create({
     parentView: {

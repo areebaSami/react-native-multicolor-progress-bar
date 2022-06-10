@@ -14,10 +14,10 @@ import {
   StyleSheet,
   TouchInput
 } from 'react-native';
-import {ProgressBar} from 'react-native-multicolor-progress-bar';
+import { ProgressBar } from 'react-native-multicolor-progress-bar';
 
-class App extends React.Component{
-  constructor(props){
+class App extends React.Component {
+  constructor(props) {
     super(props);
     this.changeProgress = this.changeProgress.bind(this);
     let progressReadings = [
@@ -28,16 +28,16 @@ class App extends React.Component{
         nameToDisplay: "40%",
       },
       {
-          color: 'blue',
-          value: 0.2,
-          opacity: 0.5,
-          nameToDisplay: "20%",
+        color: 'blue',
+        value: 0.2,
+        opacity: 0.5,
+        nameToDisplay: "20%",
       },
       {
-          color: 'green',
-          value: 0.2,
-          opacity: 0.5,
-          nameToDisplay: "20%",
+        color: 'green',
+        value: 0.2,
+        opacity: 0.5,
+        nameToDisplay: "20%",
       },
     ]
     this.state = {
@@ -45,38 +45,35 @@ class App extends React.Component{
     }
   }
   changeProgress() {
-    let number = Math.random();
-    let selectedIndex = 1;
-    let progressValue = number - 0.2;
-    if(number <= 0.3){
-      selectedIndex = 0;
-      progressValue = number;
-    }else if(number >= 0.6){
-      selectedIndex = 2;
-      progressValue = 1- number;
-      if(number < 0.9){
-        progressValue -= 0.1
+    let progressReadings = [...this.state.progressReadings];
+    for(let i =0;i<3;i++){
+      let number = Math.random().toFixed(2);
+      if(number > 0.3 && number <= 0.6){
+        number -= 0.3
+      }else if(number > 0.6){
+        number -= 0.6
       }
+      number = Number(number).toFixed(2)
+      progressReadings[i].value = number
+      progressReadings[i].nameToDisplay = (number * 100).toFixed(2) + '%'
     }
-    let progressReadings = [...this.state.progressReadings]; 
-    progressReadings[selectedIndex].value =  progressValue
     this.setState({
       progressReadings
     })
   }
-  render(){
+  render() {
     return (
       <View style={styles.mainView}>
         <View style={styles.view}>
           {/* <Text style={styles.text}>This is an example. You can add/reduce colors as well</Text> */}
           <ProgressBar
             numberOfProgressBars={3}
-            backgroundBarStyle={{height: 15}}
-            textStyle= {{color: 'white', opacity: 1, fontSize: 10,padding: 2}}
+            backgroundBarStyle={{ height: 15 }}
+            textStyle={{ color: 'white', opacity: 1, fontSize: 10, padding: 2 }}
             arrayOfProgressObjects={this.state.progressReadings}
           />
         </View>
-        <Text style={styles.text}>{"Red: " + this.state.progressReadings[0].value + " \n Blue: " + this.state.progressReadings[1].value + " \n Green: " + this.state.progressReadings[2].value }</Text>
+        <Text style={styles.text}>{"Red: " + this.state.progressReadings[0].value + " \n Blue: " + this.state.progressReadings[1].value + " \n Green: " + this.state.progressReadings[2].value}</Text>
         <TouchableOpacity onPress={this.changeProgress} style={styles.button}>
           <Text style={styles.buttonText}>Change Progress</Text>
         </TouchableOpacity>
@@ -87,7 +84,7 @@ class App extends React.Component{
 
 const styles = StyleSheet.create({
   mainView: {
-    flex: 1, 
+    flex: 1,
     justifyContent: 'space-evenly',
     backgroundColor: 'black',
     alignItems: 'stretch',

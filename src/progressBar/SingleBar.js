@@ -1,41 +1,44 @@
-import React, { PureComponent } from 'react';
+import React, { memo } from 'react';
 import {
-  View,
-  Text
+    View,
+    Text
 } from 'react-native';
+import { colors } from '../commons';
 import { styles } from './Styles';
 
-class SingleBar extends PureComponent {
-  constructor(props){
-    super(props);
-  }
-  getValue(){
-    let value = Math.min(Math.max(this.props.value, 0), 1);
-    value = value * 100;
-    value = '' + value + '%';
-    return value
-  }
-  getEndBarStyles(){
-    let style = {};
-    if(this.props.index == 0){
-      let propStyle = this.props.onStartProgressStyle ?  this.props.onStartProgressStyle : {}
-      style = {...styles.onStartProgressStyle,...propStyle}
-    }else if(this.props.isLast){
-      let propStyle = this.props.onEndProgressStyle ?  this.props.onEndProgressStyle : {}
-      style = {...styles.onEndProgressStyle,...propStyle}
+const SingleBar = ({
+    index = 0,
+    isLast = false,
+    onStartProgressStyle = {},
+    onEndProgressStyle = {},
+    color = colors.black,
+    opacity = 1,
+    textStyle = {},
+    nameToDisplay = '',
+    value = 0
+
+}) => {
+    const getValue = (value) => {
+        value = Math.min(Math.max(value, 0), 1);
+        value = value * 100;
+        value = '' + value + '%';
+        return value
     }
-    return style;
-  }
-  render() {
-    let {color,opacity,textStyle,index,nameToDisplay} = this.props;
-    let value = this.getValue();
-    let endStyles = this.getEndBarStyles();
-    opacity = opacity ? opacity : 1
+    const getEndBarStyles = () => {
+        let style = {};
+        if (index == 0) {
+            let propStyle = onStartProgressStyle ? onStartProgressStyle : {}
+            style = { ...styles.onStartProgressStyle, ...propStyle }
+        } else if (isLast) {
+            let propStyle = onEndProgressStyle ? onEndProgressStyle : {}
+            style = { ...styles.onEndProgressStyle, ...propStyle }
+        }
+        return style;
+    }
     return (
-      <View key={index} style={[endStyles,{backgroundColor: color,opacity: opacity, width: value}]}>
-        {nameToDisplay ? <Text style={[styles.textStyle,textStyle ? textStyle : {}]}>{this.props.nameToDisplay}</Text> : null}
-      </View>
+        <View key={index} style={[getEndBarStyles(), { backgroundColor: color, opacity: opacity, width: getValue(value) }]}>
+            {nameToDisplay ? <Text style={[styles.textStyle, textStyle ? textStyle : {}]}>{nameToDisplay}</Text> : null}
+        </View>
     )
-  }
 }
-export default SingleBar;
+export default memo(SingleBar);
